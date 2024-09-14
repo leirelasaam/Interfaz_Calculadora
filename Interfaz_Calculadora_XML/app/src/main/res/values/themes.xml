@@ -11,16 +11,16 @@
         <item name="cornerRadius">5dp</item>
         <item name="android:textSize">30dp</item>
     </style>
-    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonAc" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
         <item name="backgroundTint">@color/light_orange</item>
     </style>
-    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonOperation" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
         <item name="backgroundTint">@color/dark_orange</item>
     </style>
-    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonNumber" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
         <item name="backgroundTint">@color/medium_blue</item>
     </style>
-    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonDot" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
         <item name="backgroundTint">@color/light_blue</item>
     </style>
 </resources>

@@ -57,11 +57,7 @@ class MainActivity : AppCompatActivity() {
             val expression = textOperation.text.toString()
             val result: Double = evaluateExpression(changeOperators(expression))
             // Comprobar si el resultado es válido o es NaN
-            if (result.isNaN()) {
-                textResult.text = getString(R.string.textError)
-            } else {
-                textResult.text = result.toString()
-            }
+            textResult.text = if (result.isNaN()) getString(R.string.textError) else result.toString()
         }
 
     }
