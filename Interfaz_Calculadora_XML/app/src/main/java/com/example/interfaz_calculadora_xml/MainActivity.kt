@@ -56,7 +56,12 @@ class MainActivity : AppCompatActivity() {
         (findViewById<Button>(R.id.btnEquals)).setOnClickListener(){
             val expression = textOperation.text.toString()
             val result: Double = evaluateExpression(changeOperators(expression))
-            textResult.text = result.toString()
+            // Comprobar si el resultado es válido o es NaN
+            if (result.isNaN()) {
+                textResult.text = getString(R.string.textError)
+            } else {
+                textResult.text = result.toString()
+            }
         }
 
     }

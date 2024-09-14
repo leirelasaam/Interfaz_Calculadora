@@ -26,7 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/white"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
 
     <TextView
         android:id="@+id/textResult"
@@ -62,7 +63,7 @@
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
-                android:text="AC" />
+                android:text="@string/btnAc" />
 
             <Space
                 android:layout_width="10dp"
@@ -74,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="⌫" />
+                android:text="@string/btnDel" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="(" />
+                android:text="@string/btnOpen" />
 
             <Space
                 android:layout_width="10dp"
@@ -101,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text=")" />
+                android:text="@string/btnClose" />
 
             <Space
                 android:layout_width="10dp"
@@ -113,7 +114,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="." />
+                android:text="@string/btnDot" />
 
             <Space
                 android:layout_width="10dp"
@@ -125,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="÷" />
+                android:text="@string/btnDivide" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +141,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="7" />
+                android:text="@string/btn7" />
 
             <Space
                 android:layout_width="10dp"
@@ -152,7 +153,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="8" />
+                android:text="@string/btn8" />
 
             <Space
                 android:layout_width="10dp"
@@ -164,7 +165,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="9" />
+                android:text="@string/btn7" />
 
             <Space
                 android:layout_width="10dp"
@@ -176,7 +177,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="×" />
+                android:text="@string/btnMultiply" />
         </LinearLayout>
 
         <LinearLayout
@@ -191,7 +192,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="4" />
+                android:text="@string/btn4" />
 
             <Space
                 android:layout_width="10dp"
@@ -203,7 +204,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="5" />
+                android:text="@string/btn5" />
 
             <Space
                 android:layout_width="10dp"
@@ -215,7 +216,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="6" />
+                android:text="@string/btn6" />
 
             <Space
                 android:layout_width="10dp"
@@ -227,7 +228,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="-" />
+                android:text="@string/btnSubtract" />
         </LinearLayout>
 
         <LinearLayout
@@ -242,7 +243,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="1" />
+                android:text="@string/btn1" />
 
             <Space
                 android:layout_width="10dp"
@@ -254,7 +255,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="2" />
+                android:text="@string/btn2" />
 
             <Space
                 android:layout_width="10dp"
@@ -266,7 +267,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="3" />
+                android:text="@string/btn3" />
 
             <Space
                 android:layout_width="10dp"
@@ -278,7 +279,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="+" />
+                android:text="@string/btnAdd" />
         </LinearLayout>
 
         <LinearLayout
@@ -293,7 +294,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="0" />
+                android:text="@string/btn0" />
 
             <Space
                 android:layout_width="10dp"
@@ -305,7 +306,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="=" />
+                android:text="@string/btnEquals" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
