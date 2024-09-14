@@ -8,12 +8,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
         android:background="@color/dark_blue"
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
-        android:paddingVertical="20dp">
+        android:paddingVertical="10dp">
 
         <TextView
             android:id="@+id/textOperation"
@@ -66,84 +66,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnAc"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:text="@string/btnAc" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btnDel"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/btnDel" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnOpen"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/btnOpen" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btnClose"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/btnClose" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btnDot"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/btnDot" />
-
-                <Space
-                    android:layout_width="10dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btnDivide"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/btnDivide" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
                     android:id="@+id/btn7"
                     style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
                     android:layout_width="0dp"
@@ -152,7 +74,7 @@
                     android:text="@string/btn7" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -164,7 +86,7 @@
                     android:text="@string/btn8" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -176,16 +98,29 @@
                     android:text="@string/btn9" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
-                    android:id="@+id/btnMultiply"
+                    android:id="@+id/btnDel"
                     style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/btnMultiply" />
+                    android:text="@string/btnDel" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnAc"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="@string/btnAc" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -203,7 +138,7 @@
                     android:text="@string/btn4" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -215,7 +150,7 @@
                     android:text="@string/btn5" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -227,16 +162,40 @@
                     android:text="@string/btn6" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
-                    android:id="@+id/btnSubtract"
+                    android:id="@+id/btnDivide"
                     style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/btnSubtract" />
+                    android:text="@string/btnDivide" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnMultiply"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btnMultiply" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnOpen"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btnOpen" />
             </LinearLayout>
 
             <LinearLayout
@@ -254,7 +213,7 @@
                     android:text="@string/btn1" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -266,7 +225,7 @@
                     android:text="@string/btn2" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -278,7 +237,19 @@
                     android:text="@string/btn3" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnSubtract"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btnSubtract" />
+
+                <Space
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
@@ -288,6 +259,18 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="@string/btnAdd" />
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnClose"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btnClose" />
             </LinearLayout>
 
             <LinearLayout
@@ -305,7 +288,19 @@
                     android:text="@string/btn0" />
 
                 <Space
-                    android:layout_width="10dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/btnDot"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/btnDot" />
+
+                <Space
+                    android:layout_width="5dp"
                     android:layout_height="wrap_content" />
 
                 <Button
