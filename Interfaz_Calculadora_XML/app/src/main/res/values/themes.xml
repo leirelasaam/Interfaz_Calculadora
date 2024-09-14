@@ -6,4 +6,21 @@
     </style>
 
     <style name="Theme.Interfaz_Calculadora_XML" parent="Base.Theme.Interfaz_Calculadora_XML" />
+
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">5dp</item>
+        <item name="android:textSize">30dp</item>
+    </style>
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonAc" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+        <item name="backgroundTint">@color/light_orange</item>
+    </style>
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonOperation" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+        <item name="backgroundTint">@color/dark_orange</item>
+    </style>
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonNumber" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+        <item name="backgroundTint">@color/medium_blue</item>
+    </style>
+    <style name="Widget.Theme.Interfaz_Calculadora_XML.ButtonDot" parent="Widget.Theme.Interfaz_Calculadora_XML.Button">
+        <item name="backgroundTint">@color/light_blue</item>
+    </style>
 </resources>
