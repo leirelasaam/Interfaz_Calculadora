@@ -79,7 +79,7 @@
 
                 <Button
                     android:id="@+id/btnDel"
-                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+                    style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
