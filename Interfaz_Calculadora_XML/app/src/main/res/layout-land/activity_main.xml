@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textOperation"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="30sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textResult"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textColor="@color/white"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/btn7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/textResult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textOperation" />
+
+    <Button
+        android:id="@+id/btn7"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn7"
+        app:layout_constraintBottom_toTopOf="@+id/btn4"
+        app:layout_constraintEnd_toStartOf="@+id/btn8"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <Button
+        android:id="@+id/btnAc"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
+        android:layout_width="280dp"
+        android:layout_height="75dp"
+        android:text="@string/btnAc"
+        app:layout_constraintBottom_toTopOf="@+id/btnMultiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnDel"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <Button
+        android:id="@+id/btn2"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn2"
+        app:layout_constraintBottom_toTopOf="@+id/btn0"
+        app:layout_constraintEnd_toStartOf="@+id/btn3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn1"
+        app:layout_constraintTop_toBottomOf="@+id/btn5" />
+
+    <Button
+        android:id="@+id/btn8"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn8"
+        app:layout_constraintBottom_toTopOf="@+id/btn5"
+        app:layout_constraintEnd_toStartOf="@+id/btn9"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn7"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <Button
+        android:id="@+id/btn3"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn3"
+        app:layout_constraintBottom_toTopOf="@+id/btnDot"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubtract"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn2"
+        app:layout_constraintTop_toBottomOf="@+id/btn6" />
+
+    <Button
+        android:id="@+id/btnEquals"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
+        android:layout_width="280dp"
+        android:layout_height="75dp"
+        android:text="@string/btnEquals"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnDot"
+        app:layout_constraintTop_toBottomOf="@+id/btnClose" />
+
+    <Button
+        android:id="@+id/btnSubtract"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnSubtract"
+        app:layout_constraintBottom_toTopOf="@+id/btnDot"
+        app:layout_constraintEnd_toStartOf="@+id/btnAdd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn3"
+        app:layout_constraintTop_toBottomOf="@+id/btnDivide" />
+
+    <Button
+        android:id="@+id/btnMultiply"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnMultiply"
+        app:layout_constraintBottom_toTopOf="@+id/btnAdd"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpen"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnDivide"
+        app:layout_constraintTop_toBottomOf="@+id/btnAc" />
+
+    <Button
+        android:id="@+id/btn1"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn1"
+        app:layout_constraintBottom_toTopOf="@+id/btn0"
+        app:layout_constraintEnd_toStartOf="@+id/btn2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn4" />
+
+    <Button
+        android:id="@+id/btnDot"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+        android:layout_width="280dp"
+        android:layout_height="75dp"
+        android:text="@string/btnDot"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEquals"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn0"
+        app:layout_constraintTop_toBottomOf="@+id/btn3" />
+
+    <Button
+        android:id="@+id/btnClose"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnClose"
+        app:layout_constraintBottom_toTopOf="@+id/btnEquals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAdd"
+        app:layout_constraintTop_toBottomOf="@+id/btnOpen" />
+
+    <Button
+        android:id="@+id/btn6"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn6"
+        app:layout_constraintBottom_toTopOf="@+id/btn3"
+        app:layout_constraintEnd_toStartOf="@+id/btnDivide"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn5"
+        app:layout_constraintTop_toBottomOf="@+id/btn9" />
+
+    <Button
+        android:id="@+id/btn4"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn4"
+        app:layout_constraintBottom_toTopOf="@+id/btn1"
+        app:layout_constraintEnd_toStartOf="@+id/btn5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn7" />
+
+    <Button
+        android:id="@+id/btnDel"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnDel"
+        app:layout_constraintBottom_toTopOf="@+id/btnDivide"
+        app:layout_constraintEnd_toStartOf="@+id/btnAc"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn9"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <Button
+        android:id="@+id/btnOpen"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnOpen"
+        app:layout_constraintBottom_toTopOf="@+id/btnClose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnMultiply"
+        app:layout_constraintTop_toBottomOf="@+id/btnAc" />
+
+    <Button
+        android:id="@+id/btn0"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="280dp"
+        android:layout_height="75dp"
+        android:text="@string/btn0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDot"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn2" />
+
+    <Button
+        android:id="@+id/btn5"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn5"
+        app:layout_constraintBottom_toTopOf="@+id/btn2"
+        app:layout_constraintEnd_toStartOf="@+id/btn6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn4"
+        app:layout_constraintTop_toBottomOf="@+id/btn8" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnAdd"
+        app:layout_constraintBottom_toTopOf="@+id/btnEquals"
+        app:layout_constraintEnd_toStartOf="@+id/btnClose"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSubtract"
+        app:layout_constraintTop_toBottomOf="@+id/btnMultiply" />
+
+    <Button
+        android:id="@+id/btnDivide"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkOrange"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btnDivide"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubtract"
+        app:layout_constraintEnd_toStartOf="@+id/btnMultiply"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn6"
+        app:layout_constraintTop_toBottomOf="@+id/btnDel" />
+
+    <Button
+        android:id="@+id/btn9"
+        style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonDarkBlue"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:text="@string/btn9"
+        app:layout_constraintBottom_toTopOf="@+id/btn6"
+        app:layout_constraintEnd_toStartOf="@+id/btnDel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn8"
+        app:layout_constraintTop_toBottomOf="@+id/textResult" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="-58dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

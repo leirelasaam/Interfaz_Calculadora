@@ -56,7 +56,7 @@
     <Button
         android:id="@+id/btnAc"
         style="@style/Widget.Theme.Interfaz_Calculadora_XML.ButtonLightOrange"
-        android:layout_width="275dp"
+        android:layout_width="270dp"
         android:layout_height="75dp"
         android:text="@string/btnAc"
         app:layout_constraintBottom_toTopOf="@+id/btnOpen"
@@ -291,5 +291,12 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn9"
         app:layout_constraintTop_toBottomOf="@+id/btnDivide" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="328dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
