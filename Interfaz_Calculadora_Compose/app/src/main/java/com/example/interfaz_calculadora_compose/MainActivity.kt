@@ -1,6 +1,9 @@
 package com.example.interfaz_calculadora_compose
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -23,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,14 +48,25 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Interfaz_Calculadora_ComposeTheme {
-                Calculadora()
+                HandleOrientationChanges()
             }
         }
     }
 }
 
 @Composable
-fun Calculadora() {
+fun HandleOrientationChanges() {
+    val configuration = LocalConfiguration.current
+    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    if (isLandscape) {
+        LandscapeLayout()
+    } else {
+        PortraitLayout()
+    }
+}
+
+@Composable
+fun PortraitLayout() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -129,6 +144,10 @@ fun Calculadora() {
     }
 }
 
+@Composable
+fun LandscapeLayout() {
+}
+
 // Crea una fila de botones con su texto, ancho y color
 @Composable
 fun ButtonRow(
@@ -172,6 +191,6 @@ fun ButtonRow(
 @Composable
 fun GreetingPreview() {
     Interfaz_Calculadora_ComposeTheme {
-        Calculadora()
+        HandleOrientationChanges()
     }
 }
