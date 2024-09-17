@@ -23,6 +23,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -34,6 +36,9 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.interfaz_calculadora_compose.ui.theme.Interfaz_Calculadora_ComposeTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import net.objecthunter.exp4j.ExpressionBuilder
 
 val darkBlue: Color = Color(0xFF021E2C)
 val lightBlue: Color = Color(0x808ECAE6)
@@ -48,16 +53,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Interfaz_Calculadora_ComposeTheme {
-                HandleOrientationChanges()
+                Calculadora()
             }
         }
     }
 }
 
 @Composable
-fun HandleOrientationChanges() {
+fun Calculadora() {
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
     if (isLandscape) {
         LandscapeLayout()
     } else {
@@ -67,6 +73,18 @@ fun HandleOrientationChanges() {
 
 @Composable
 fun PortraitLayout() {
+    var textOperation by remember { mutableStateOf("") }
+    var textResult by remember { mutableStateOf("") }
+
+    fun onButtonClick(text: String) {
+        when (text) {
+            "AC" -> textOperation = ""
+            "⌫" -> if (textOperation.isNotEmpty()) textOperation = textOperation.dropLast(1)
+            "=" -> textResult = if (evaluateExpression(changeOperators(textOperation)).isNaN()) "Expresión inválida" else evaluateExpression(changeOperators(textOperation)).toString()
+            else -> textOperation += text
+        }
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,7 +103,7 @@ fun PortraitLayout() {
                     .weight(1f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Operation", color = white, style = TextStyle(fontSize = 30.sp))
+                Text(text = textOperation, color = white, style = TextStyle(fontSize = 30.sp))
             }
 
             Box(
@@ -95,7 +113,7 @@ fun PortraitLayout() {
                     .weight(0.75f),
                 contentAlignment = Alignment.CenterEnd
             ) {
-                Text("Result", color = white, style = TextStyle(fontSize = 20.sp))
+                Text(text = textResult, color = white, style = TextStyle(fontSize = 20.sp))
             }
 
             Column(
@@ -107,37 +125,43 @@ fun PortraitLayout() {
                 ButtonRow(
                     buttonTexts = listOf("AC", "⌫"),
                     buttonWeights = listOf(3f, 1f),
-                    buttonColors = listOf(lightOrange, lightOrange)
+                    buttonColors = listOf(lightOrange, lightOrange),
+                    onButtonClick = ::onButtonClick
                 )
 
                 ButtonRow(
                     buttonTexts = listOf("(", ")", ".", "÷"),
                     buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange)
+                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
+                    onButtonClick = ::onButtonClick
                 )
 
                 ButtonRow(
                     buttonTexts = listOf("7", "8", "9", "×"),
                     buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange)
+                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
+                    onButtonClick = ::onButtonClick
                 )
 
                 ButtonRow(
                     buttonTexts = listOf("4", "5", "6", "-"),
                     buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange)
+                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
+                    onButtonClick = ::onButtonClick
                 )
 
                 ButtonRow(
                     buttonTexts = listOf("1", "2", "3", "+"),
                     buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange)
+                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
+                    onButtonClick = ::onButtonClick
                 )
 
                 ButtonRow(
                     buttonTexts = listOf("0", "="),
                     buttonWeights = listOf(1f, 1f),
-                    buttonColors = listOf(mediumBlue, lightOrange)
+                    buttonColors = listOf(mediumBlue, lightOrange),
+                    onButtonClick = ::onButtonClick
                 )
             }
         }
@@ -148,12 +172,13 @@ fun PortraitLayout() {
 fun LandscapeLayout() {
 }
 
-// Crea una fila de botones con su texto, ancho y color
+// Crea una fila de botones con su texto, ancho, color
 @Composable
 fun ButtonRow(
     buttonTexts: List<String>,
     buttonWeights: List<Float>,
-    buttonColors: List<Color>
+    buttonColors: List<Color>,
+    onButtonClick: (String) -> Unit
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -167,7 +192,7 @@ fun ButtonRow(
         */
         buttonTexts.forEachIndexed { index, text ->
             Button(
-                onClick = { /* TODO */ }, // Asignar la función onClick
+                onClick = { onButtonClick(text) }, // Asignar la función onClick pasando el texto como parámetro
                 modifier = Modifier
                     .weight(buttonWeights[index]), // Controla el ancho
                 colors = ButtonDefaults.buttonColors(containerColor = buttonColors[index]), // Aplicar el color de fondo que se pasa como parámetro
@@ -187,10 +212,25 @@ fun ButtonRow(
     }
 }
 
+fun evaluateExpression(expression: String): Double {
+    return try {
+        val expr = ExpressionBuilder(expression).build()
+        expr.evaluate()
+    } catch (e: Exception) {
+        Double.NaN
+    }
+}
+
+fun changeOperators(expression: String) : String {
+    var newExpression: String = ""
+    newExpression = expression.replace('×', '*').replace('÷', '/')
+    return newExpression
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Interfaz_Calculadora_ComposeTheme {
-        HandleOrientationChanges()
+        Calculadora()
     }
 }
