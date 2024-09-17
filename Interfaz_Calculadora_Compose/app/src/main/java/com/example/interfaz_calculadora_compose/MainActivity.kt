@@ -76,7 +76,7 @@ fun PortraitLayout() {
     var textOperation by remember { mutableStateOf("") }
     var textResult by remember { mutableStateOf("") }
 
-    fun onButtonClick(text: String) {
+    fun onBtnClick(text: String) {
         when (text) {
             "AC" -> textOperation = ""
             "⌫" -> if (textOperation.isNotEmpty()) textOperation = textOperation.dropLast(1)
@@ -93,8 +93,8 @@ fun PortraitLayout() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(30.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+                .padding(10.dp, 0.dp),
+            verticalArrangement = Arrangement.SpaceEvenly
         ) {
             Row(
                 modifier = Modifier
@@ -103,66 +103,82 @@ fun PortraitLayout() {
                     .weight(1f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = textOperation, color = white, style = TextStyle(fontSize = 30.sp))
+                Text(text = textOperation, color = white, style = TextStyle(fontSize = 40.sp))
             }
 
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(0.dp, 10.dp)
+                    .padding(0.dp, 5.dp)
                     .weight(0.75f),
                 contentAlignment = Alignment.CenterEnd
             ) {
-                Text(text = textResult, color = white, style = TextStyle(fontSize = 20.sp))
+                Text(text = textResult, color = white, style = TextStyle(fontSize = 30.sp))
             }
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(5.dp),
                 modifier = Modifier
                     .weight(4f)
-                    .padding(0.dp, 20.dp),
+                    .padding(0.dp, 20.dp)
             ) {
-                ButtonRow(
-                    buttonTexts = listOf("AC", "⌫"),
-                    buttonWeights = listOf(3f, 1f),
-                    buttonColors = listOf(lightOrange, lightOrange),
-                    onButtonClick = ::onButtonClick
-                )
-
-                ButtonRow(
-                    buttonTexts = listOf("(", ")", ".", "÷"),
-                    buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
-                    onButtonClick = ::onButtonClick
-                )
-
-                ButtonRow(
-                    buttonTexts = listOf("7", "8", "9", "×"),
-                    buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
-                    onButtonClick = ::onButtonClick
-                )
-
-                ButtonRow(
-                    buttonTexts = listOf("4", "5", "6", "-"),
-                    buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
-                    onButtonClick = ::onButtonClick
-                )
-
-                ButtonRow(
-                    buttonTexts = listOf("1", "2", "3", "+"),
-                    buttonWeights = listOf(1f, 1f, 1f, 1f),
-                    buttonColors = listOf(mediumBlue, mediumBlue, mediumBlue, darkOrange),
-                    onButtonClick = ::onButtonClick
-                )
-
-                ButtonRow(
-                    buttonTexts = listOf("0", "="),
-                    buttonWeights = listOf(1f, 1f),
-                    buttonColors = listOf(mediumBlue, lightOrange),
-                    onButtonClick = ::onButtonClick
-                )
+                // IMPORTANTE -> ::nombreFuncion en Kotlin es una forma de referirse a una función sin ejecutarla de inmediato.
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("AC",  lightOrange, Modifier.weight(3f), ::onBtnClick)
+                    ModifiedButton("⌫",  lightOrange, Modifier.weight(0.97f), ::onBtnClick)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("(",  lightBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton(")",  lightBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton(".",  lightBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("÷",  darkOrange, Modifier.weight(1f), ::onBtnClick)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("7",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("8",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("9",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("×",  darkOrange, Modifier.weight(1f), ::onBtnClick)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("4",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("5",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("6",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("-",  darkOrange, Modifier.weight(1f), ::onBtnClick)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("1",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("2",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("3",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("+",  darkOrange, Modifier.weight(1f), ::onBtnClick)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ModifiedButton("0",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                    ModifiedButton("=",  mediumBlue, Modifier.weight(1f), ::onBtnClick)
+                }
             }
         }
     }
@@ -172,43 +188,29 @@ fun PortraitLayout() {
 fun LandscapeLayout() {
 }
 
-// Crea una fila de botones con su texto, ancho, color
 @Composable
-fun ButtonRow(
-    buttonTexts: List<String>,
-    buttonWeights: List<Float>,
-    buttonColors: List<Color>,
+fun ModifiedButton(
+    text: String,
+    color: Color,
+    modifier: Modifier = Modifier,
     onButtonClick: (String) -> Unit
 ) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(5.dp), // Espacio entre los botones de la fila
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        /*
-        * forEachIndexed es una función en Kotlin que itera sobre una colección (como una lista)
-        * y permite acceder tanto al índice de cada elemento como al propio elemento durante
-        * la iteración.
-        */
-        buttonTexts.forEachIndexed { index, text ->
-            Button(
-                onClick = { onButtonClick(text) }, // Asignar la función onClick pasando el texto como parámetro
+        Button(
+            onClick = { onButtonClick(text) },
+            modifier = modifier,
+            colors = ButtonDefaults.buttonColors(containerColor = color),
+            shape = RoundedCornerShape(5.dp)
+        ) {
+            Text(
+                text,
+                style = TextStyle(fontSize = 30.sp),
                 modifier = Modifier
-                    .weight(buttonWeights[index]), // Controla el ancho
-                colors = ButtonDefaults.buttonColors(containerColor = buttonColors[index]), // Aplicar el color de fondo que se pasa como parámetro
-                shape = RoundedCornerShape(5.dp) // Controlar el borde
-            ) {
-                Text(
-                    text,
-                    style = TextStyle(fontSize = 30.sp),
-                    modifier = Modifier
-                        .padding(15.dp)
-                        .fillMaxWidth()
-                        .align(Alignment.CenterVertically), // Alineamiento vertical
-                    textAlign = TextAlign.Center  // Alineamiento horizontal
-                )
-            }
-        }
+                    .padding(0.dp, 15.dp)
+                    .fillMaxWidth()
+                    .align(Alignment.CenterVertically),
+                textAlign = TextAlign.Center
+            )
+
     }
 }
 
