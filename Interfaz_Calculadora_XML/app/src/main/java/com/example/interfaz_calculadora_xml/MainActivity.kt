@@ -10,6 +10,9 @@ import androidx.core.view.WindowInsetsCompat
 import net.objecthunter.exp4j.ExpressionBuilder
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var textOperation: TextView
+    private lateinit var textResult: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,8 +23,14 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val textOperation: TextView = (findViewById<TextView>(R.id.textOperation))
-        val textResult: TextView = (findViewById<TextView>(R.id.textResult))
+        textOperation = (findViewById<TextView>(R.id.textOperation))
+        textResult = (findViewById<TextView>(R.id.textResult))
+
+        // Restaurar el estado si existe
+        if (savedInstanceState != null) {
+            textOperation.text = savedInstanceState.getString("operationText", "")
+            textResult.text = savedInstanceState.getString("resultText", "")
+        }
 
         // IDs de los botones numéricos y de operación
         val buttons = listOf(
@@ -60,6 +69,13 @@ class MainActivity : AppCompatActivity() {
             textResult.text = if (result.isNaN()) getString(R.string.textError) else result.toString()
         }
 
+    }
+
+    // Guardar el estado de los TextViews
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("operationText", textOperation.text.toString())
+        outState.putString("resultText", textResult.text.toString())
     }
 
     // Utilización de la librería Rhino para evaluar una expresión matemática y devolver el valor
