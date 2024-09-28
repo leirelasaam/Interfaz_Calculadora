@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.interfaz_calculadora_compose"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,5 +66,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("net.objecthunter:exp4j:0.4.8")
+    implementation(libs.exp4j)
 }
