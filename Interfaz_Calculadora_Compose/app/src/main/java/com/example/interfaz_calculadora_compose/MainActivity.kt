@@ -30,6 +30,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 
+/**
+ * Actividad principal de la aplicación de la calculadora.
+ *
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// CONTROL DE LA ORIENTACIÓN
+/**
+ * Comprueba la orientación del dispositivo.
+ *
+ */
 @Composable
 fun Calculadora() {
     val configuration = LocalConfiguration.current
@@ -51,15 +58,21 @@ fun Calculadora() {
     CalculadoraLayout(isLandscape)
 }
 
-// LAYOUT CON VALORES DIFERENTES DEPENDIENDO DE LA ORIENTACIÓN
+/**
+ * Representa el diseño de la interfaz que se adapta a la orientación del dispositivo.
+ *
+ * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
+ */
 @Composable
 fun CalculadoraLayout(
     isLandscape: Boolean
 ) {
+    // Variable para controlar el texto de operación y guardar su estado
     var textOperation by rememberSaveable { mutableStateOf("") }
+    // Variable para controlar el texto del resultado y guardar su estado
     var textResult by rememberSaveable { mutableStateOf("") }
 
-    // Imortación de colores
+    // Imortación de colores del archivo colors.xml
     val darkBlue = colorResource(R.color.dark_blue)
     val lightBlue = colorResource(R.color.light_blue)
     val mediumBlue = colorResource(R.color.medium_blue)
@@ -67,7 +80,7 @@ fun CalculadoraLayout(
     val darkOrange = colorResource(R.color.dark_orange)
     val white = colorResource(R.color.white)
 
-    // Importación de textos
+    // Importación de textos del archivo strings.xml
     val textBtn0 = stringResource(R.string.btn0)
     val textBtn1 = stringResource(R.string.btn1)
     val textBtn2 = stringResource(R.string.btn2)
@@ -90,7 +103,7 @@ fun CalculadoraLayout(
     val textBtnDel = stringResource(R.string.btnDel)
     val textError = stringResource(R.string.textError)
 
-    // LISTADO Y ORDEN DE LOS BOTONES PARA MODO HORIZONTAL
+    // Listado de botones para la orientación apaisada
     val buttonRowsLandscape = listOf(
         listOf(
             Triple(textBtn7, mediumBlue, 1f),
@@ -119,7 +132,7 @@ fun CalculadoraLayout(
         )
     );
 
-    // LISTADO Y ORDEN DE LOS BOTONES PARA MODO VERTICAL
+    // Listado de botones para la orientación vertical
     val buttonRowsPortrait = listOf(
         listOf(
             Triple(textBtnAc, lightOrange, 3.05f),
@@ -150,20 +163,30 @@ fun CalculadoraLayout(
         )
     );
 
+    // Variable que contiene el listado de botones a generar, dependiendo del valor de isLandscape
     val buttonRows = if (isLandscape) buttonRowsLandscape else buttonRowsPortrait
 
+    /**
+     * Maneja el clic de los botones de la calculadora, teniendo en cuenta el texto que contienen.
+     *
+     * @param text Texto del botón que ha sido presionado.
+     */
     fun onBtnClick(text: String) {
         when (text) {
+            // Si se presiona el botón AC, se reinician los campos de operación y resultado
             textBtnAc -> {
                 textOperation = ""
                 textResult = ""
             }
+            // Si se presiona el botón de suprimir, se elimina el último caracter del campo de operación
             textBtnDel -> if (textOperation.isNotEmpty()) textOperation = textOperation.dropLast(1)
+            // Si se presiona el botón de igualar, se evalua la expresión del campo de operación
             textBtnEquals -> {
                 textResult =
                     if (evaluateExpression(changeOperators(textOperation)).isNaN()) textError
                     else evaluateExpression(changeOperators(textOperation)).toString()
             }
+            // Si se presiona cualquier otro botón, se añade su texto al campo de operación
             else -> textOperation += text
         }
     }
@@ -211,7 +234,12 @@ fun CalculadoraLayout(
     }
 }
 
-// COMPONENTE CON FILAS Y BOTONES
+/**
+ * Componente para generar filas con botones.
+ *
+ * @param buttonRows Listado de botones a añadir en cada fila.
+ * @param onBtnClick Función para manejar el clic en los botones.
+ */
 @Composable
 fun ButtonGrid(buttonRows: List<List<Triple<String, Color, Float>>>, onBtnClick: (String) -> Unit) {
     for (row in buttonRows) {
@@ -230,7 +258,14 @@ fun ButtonGrid(buttonRows: List<List<Triple<String, Color, Float>>>, onBtnClick:
     }
 }
 
-// COMPONENTE BOTÓN CON MODIFICACIONES
+/**
+ * Componente para crear un botón con modificaciones de estilo.
+ *
+ * @param text Texto del botón.
+ * @param color Color de fondo del botón.
+ * @param modifier Modifier del botón.
+ * @param onButtonClick Función onClick del botón.
+ */
 @Composable
 fun ModifiedButton(
     text: String, color: Color, modifier: Modifier = Modifier, onButtonClick: (String) -> Unit
@@ -257,6 +292,12 @@ fun ModifiedButton(
     }
 }
 
+/**
+ * Evalúa la expresión mediante la librería exp4j.
+ *
+ * @param expression Expresión a evaluar.
+ * @return Resultado de la expresión en caso de que pueda llevarse a cabo y NaN en caso contrario.
+ */
 fun evaluateExpression(expression: String): Double {
     return try {
         val expr = ExpressionBuilder(expression).build()
@@ -266,12 +307,22 @@ fun evaluateExpression(expression: String): Double {
     }
 }
 
+/**
+ * Cambia los operadores que se muestran en la calculadora, por operadores que puedan ser interpretados correctamente por exp4j.
+ *
+ * @param expression Texto que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
+ * @return Expresión con los operadores cambiados.
+ */
 fun changeOperators(expression: String): String {
     var newExpression: String = ""
     newExpression = expression.replace('×', '*').replace('÷', '/')
     return newExpression
 }
 
+/**
+ * Componente de vista previa para la aplicación de la calculadora.
+ *
+ */
 @Preview(showBackground = true)
 @Composable
 fun CalculadoraPreview() {
