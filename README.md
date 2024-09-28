@@ -3,7 +3,7 @@ Este repositorio contiene una aplicación básica de una calculadora desarrollad
 
 ## XML
 Versión que utiliza los archivos XML tradicionales para definir la interfaz de usuario.
-La rama del repositorio que contiene esta versión se denomina **xml**.
+La rama del repositorio que contiene esta versión e implementa *ConstraintLayout* se denomina **xml_cl**, mientras que la que implementa *LinearLayout* se denomina **xml_ll**.
 
 ## Jetpack Compose
 Versión que utiliza la nueva librería Jetpack Compose para construir la interfaz de usuario de forma declarativa.
