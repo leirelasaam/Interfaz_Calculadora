@@ -35,6 +35,11 @@ import androidx.compose.ui.tooling.preview.Preview
  *
  */
 class MainActivity : ComponentActivity() {
+    /**
+     * Método llamado cuando la actividad se crea por primera vez.
+     *
+     * @param savedInstanceState Bundle que contiene el estado guardado de la actividad, si está disponible.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
