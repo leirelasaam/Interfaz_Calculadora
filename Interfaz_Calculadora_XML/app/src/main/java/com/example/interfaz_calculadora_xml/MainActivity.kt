@@ -9,10 +9,19 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import net.objecthunter.exp4j.ExpressionBuilder
 
+/**
+ * Actividad principal de la aplicación de la calculadora.
+ *
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var textOperation: TextView
     private lateinit var textResult: TextView
 
+    /**
+     * Método llamado cuando la actividad se crea por primera vez.
+     *
+     * @param savedInstanceState Bundle que contiene el estado guardado de la actividad, si está disponible.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -71,15 +80,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    // Guardar el estado de los TextViews
+    /**
+     * Guarda el estado de la instancia de la actividad.
+     *
+     * @param outState El `Bundle` en el que se deben guardar los estados de la actividad.
+     * Se utiliza para almacenar datos que se pueden necesitar para restaurar la actividad.
+     */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("operationText", textOperation.text.toString())
         outState.putString("resultText", textResult.text.toString())
     }
 
-    // Utilización de la librería Rhino para evaluar una expresión matemática y devolver el valor
-    // Si no puede evaluar la expresión devuelve NaN (Not a Number)
+    /**
+     * Evalúa la expresión mediante la librería exp4j.
+     *
+     * @param expression Expresión a evaluar.
+     * @return Resultado de la expresión en caso de que pueda llevarse a cabo y NaN en caso contrario.
+     */
     fun evaluateExpression(expression: String): Double {
         return try {
             val expr = ExpressionBuilder(expression).build()
@@ -89,7 +107,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // En los botones de los operadores de multiplicación y división es necesario cambiar el caracter para que funcione Rhino
+    /**
+     * Cambia los operadores que se muestran en la calculadora, por operadores que puedan ser interpretados correctamente por exp4j.
+     *
+     * @param expression Texto que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
+     * @return Expresión con los operadores cambiados.
+     */
     fun changeOperators(expression: String) : String {
         var newExpression: String = ""
         newExpression = expression.replace('×', '*').replace('÷', '/')
