@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -217,6 +218,11 @@ fun CalculadoraLayout(
                 Text(text = textOperation, color = white, style = TextStyle(fontSize = 40.sp))
             }
 
+            HorizontalDivider(
+                color = Color.White,
+                thickness = 2.dp
+            )
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -233,7 +239,7 @@ fun CalculadoraLayout(
                     .weight(if (isLandscape) 3f else 4f)
                     .padding(0.dp, 10.dp)
             ) {
-                ButtonGrid(buttonRows, ::onBtnClick)
+                ButtonGrid(buttonRows, ::onBtnClick, isLandscape)
             }
         }
     }
@@ -244,9 +250,14 @@ fun CalculadoraLayout(
  *
  * @param buttonRows Listado de botones a añadir en cada fila.
  * @param onBtnClick Función para manejar el clic en los botones.
+ * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
-fun ButtonGrid(buttonRows: List<List<Triple<String, Color, Float>>>, onBtnClick: (String) -> Unit) {
+fun ButtonGrid(
+    buttonRows: List<List<Triple<String, Color, Float>>>,
+    onBtnClick: (String) -> Unit,
+    isLandscape: Boolean
+) {
     for (row in buttonRows) {
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -256,7 +267,8 @@ fun ButtonGrid(buttonRows: List<List<Triple<String, Color, Float>>>, onBtnClick:
                     text = buttonText,
                     color = buttonColor,
                     modifier = Modifier.weight(buttonWeight),
-                    onButtonClick = onBtnClick
+                    onButtonClick = onBtnClick,
+                    isLandscape = isLandscape
                 )
             }
         }
@@ -270,13 +282,17 @@ fun ButtonGrid(buttonRows: List<List<Triple<String, Color, Float>>>, onBtnClick:
  * @param color Color de fondo del botón.
  * @param modifier Modifier del botón.
  * @param onButtonClick Función onClick del botón.
+ * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
 fun ModifiedButton(
-    text: String, color: Color, modifier: Modifier = Modifier, onButtonClick: (String) -> Unit
+    text: String,
+    color: Color,
+    modifier: Modifier = Modifier,
+    onButtonClick: (String) -> Unit,
+    isLandscape: Boolean
 ) {
-    val buttonPadding: Int =
-        if (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE) 5 else 15
+    val buttonPadding: Float = if (isLandscape) 2.5f else 15f
 
     Button(
         onClick = { onButtonClick(text) },
@@ -286,7 +302,7 @@ fun ModifiedButton(
     ) {
         Text(
             text,
-            style = TextStyle(fontSize = 30.sp),
+            style = TextStyle(fontSize = if (text == stringResource(R.string.btnDel)) 27.sp else 30.sp),
             modifier = Modifier
                 .padding(0.dp, buttonPadding.dp)
                 .fillMaxWidth()
@@ -328,7 +344,18 @@ fun changeOperators(expression: String): String {
  * Componente de vista previa para la aplicación de la calculadora.
  *
  */
-@Preview(showBackground = true)
+// Apaisado
+@Preview(
+    showBackground = true,
+    heightDp = 412,
+    widthDp = 873
+)
+// Vertical
+@Preview(
+    showBackground = true,
+    widthDp = 412,
+    heightDp = 873
+)
 @Composable
 fun CalculadoraPreview() {
     Interfaz_Calculadora_ComposeTheme {
