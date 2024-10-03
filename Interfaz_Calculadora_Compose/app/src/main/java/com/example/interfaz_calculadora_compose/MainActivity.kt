@@ -59,163 +59,165 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Calculadora() {
     val configuration = LocalConfiguration.current
-    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val esApaisado = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    CalculadoraLayout(isLandscape)
+    CalculadoraLayout(esApaisado)
 }
 
 /**
  * Representa el diseño de la interfaz que se adapta a la orientación del dispositivo.
  *
- * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
+ * @param esApaisado Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
 fun CalculadoraLayout(
-    isLandscape: Boolean
+    esApaisado: Boolean
 ) {
     // Variable para controlar el texto de operación y guardar su estado
-    var textOperation by rememberSaveable { mutableStateOf("") }
+    var textOperacion by rememberSaveable { mutableStateOf("") }
     // Variable para controlar el texto del resultado y guardar su estado
-    var textResult by rememberSaveable { mutableStateOf("") }
+    var textResultado by rememberSaveable { mutableStateOf("") }
 
     // Imortación de colores del archivo colors.xml
-    val darkBlue = colorResource(R.color.dark_blue)
-    val lightBlue = colorResource(R.color.light_blue)
-    val mediumBlue = colorResource(R.color.medium_blue)
-    val lightOrange = colorResource(R.color.light_orange)
-    val darkOrange = colorResource(R.color.dark_orange)
-    val white = colorResource(R.color.white)
+    val azulOscuro = colorResource(R.color.dark_blue)
+    val azulClaro = colorResource(R.color.light_blue)
+    val azulMedio = colorResource(R.color.medium_blue)
+    val naranjaClaro = colorResource(R.color.light_orange)
+    val naranjaOscuro = colorResource(R.color.dark_orange)
+    val blanco = colorResource(R.color.white)
 
     // Importación de textos del archivo strings.xml
-    val textBtn0 = stringResource(R.string.btn0)
-    val textBtn1 = stringResource(R.string.btn1)
-    val textBtn2 = stringResource(R.string.btn2)
-    val textBtn3 = stringResource(R.string.btn3)
-    val textBtn4 = stringResource(R.string.btn4)
-    val textBtn5 = stringResource(R.string.btn5)
-    val textBtn6 = stringResource(R.string.btn6)
-    val textBtn7 = stringResource(R.string.btn7)
-    val textBtn8 = stringResource(R.string.btn8)
-    val textBtn9 = stringResource(R.string.btn9)
-    val textBtnAdd = stringResource(R.string.btnAdd)
-    val textBtnSubtract = stringResource(R.string.btnSubtract)
-    val textBtnMultiply = stringResource(R.string.btnMultiply)
-    val textBtnDivide = stringResource(R.string.btnDivide)
-    val textBtnOpen = stringResource(R.string.btnOpen)
-    val textBtnClose = stringResource(R.string.btnClose)
-    val textBtnAc = stringResource(R.string.btnAc)
-    val textBtnDot = stringResource(R.string.btnDot)
-    val textBtnEquals = stringResource(R.string.btnEquals)
-    val textBtnDel = stringResource(R.string.btnDel)
-    val textError = stringResource(R.string.textError)
+    val textoBtn0 = stringResource(R.string.btn0)
+    val textoBtn1 = stringResource(R.string.btn1)
+    val textoBtn2 = stringResource(R.string.btn2)
+    val textoBtn3 = stringResource(R.string.btn3)
+    val textoBtn4 = stringResource(R.string.btn4)
+    val textoBtn5 = stringResource(R.string.btn5)
+    val textoBtn6 = stringResource(R.string.btn6)
+    val textoBtn7 = stringResource(R.string.btn7)
+    val textoBtn8 = stringResource(R.string.btn8)
+    val textoBtn9 = stringResource(R.string.btn9)
+    val textoBtnSumar = stringResource(R.string.btn_sumar)
+    val textoBtnRestar = stringResource(R.string.btn_restar)
+    val textoBtnMultiplicar = stringResource(R.string.btn_multiplicar)
+    val textoBtnDividir = stringResource(R.string.btn_dividir)
+    val textoBtnAbrirParentesis = stringResource(R.string.btn_abrir_parentesis)
+    val textoBtnCerrarParentesis = stringResource(R.string.btn_cerrar_parentesis)
+    val textoBtnAc = stringResource(R.string.btn_ac)
+    val textoBtnComa = stringResource(R.string.btn_coma)
+    val textoBtnIgualar = stringResource(R.string.btn_igualar)
+    val textoBtnSuprimir = stringResource(R.string.btn_suprimir)
+    val textoError = stringResource(R.string.texto_error)
 
     // Listado de botones para la orientación apaisada
-    val buttonRowsLandscape = listOf(
+    val filasBotonesApaisado = listOf(
         listOf(
-            Triple(textBtn7, mediumBlue, 1f),
-            Triple(textBtn8, mediumBlue, 1f),
-            Triple(textBtn9, mediumBlue, 1f),
-            Triple(textBtnDel, lightOrange, 1f),
-            Triple(textBtnAc, lightOrange, 2.05f)
+            Triple(textoBtn7, azulMedio, 1f),
+            Triple(textoBtn8, azulMedio, 1f),
+            Triple(textoBtn9, azulMedio, 1f),
+            Triple(textoBtnSuprimir, naranjaClaro, 1f),
+            Triple(textoBtnAc, naranjaClaro, 2.05f)
         ), listOf(
-            Triple(textBtn4, mediumBlue, 1f),
-            Triple(textBtn5, mediumBlue, 1f),
-            Triple(textBtn6, mediumBlue, 1f),
-            Triple(textBtnDivide, darkOrange, 1f),
-            Triple(textBtnMultiply, darkOrange, 1f),
-            Triple(textBtnOpen, lightBlue, 1f)
+            Triple(textoBtn4, azulMedio, 1f),
+            Triple(textoBtn5, azulMedio, 1f),
+            Triple(textoBtn6, azulMedio, 1f),
+            Triple(textoBtnDividir, naranjaOscuro, 1f),
+            Triple(textoBtnMultiplicar, naranjaOscuro, 1f),
+            Triple(textoBtnAbrirParentesis, azulClaro, 1f)
         ), listOf(
-            Triple(textBtn1, mediumBlue, 1f),
-            Triple(textBtn2, mediumBlue, 1f),
-            Triple(textBtn3, mediumBlue, 1f),
-            Triple(textBtnSubtract, darkOrange, 1f),
-            Triple(textBtnAdd, darkOrange, 1f),
-            Triple(textBtnClose, lightBlue, 1f)
+            Triple(textoBtn1, azulMedio, 1f),
+            Triple(textoBtn2, azulMedio, 1f),
+            Triple(textoBtn3, azulMedio, 1f),
+            Triple(textoBtnRestar, naranjaOscuro, 1f),
+            Triple(textoBtnSumar, naranjaOscuro, 1f),
+            Triple(textoBtnCerrarParentesis, azulClaro, 1f)
         ), listOf(
-            Triple(textBtn0, mediumBlue, 1f),
-            Triple(textBtnDot, lightBlue, 1f),
-            Triple(textBtnEquals, lightOrange, 1f)
+            Triple(textoBtn0, azulMedio, 1f),
+            Triple(textoBtnComa, azulClaro, 1f),
+            Triple(textoBtnIgualar, naranjaClaro, 1f)
         )
     );
 
     // Listado de botones para la orientación vertical
-    val buttonRowsPortrait = listOf(
+    val filasBotonesVertical = listOf(
         listOf(
-            Triple(textBtnAc, lightOrange, 3.05f),
-            Triple(textBtnDel, lightOrange, 1f)
+            Triple(textoBtnAc, naranjaClaro, 3.05f),
+            Triple(textoBtnSuprimir, naranjaClaro, 1f)
         ), listOf(
-            Triple(textBtnOpen, lightBlue, 1f),
-            Triple(textBtnClose, lightBlue, 1f),
-            Triple(textBtnDot, lightBlue, 1f),
-            Triple(textBtnDivide, darkOrange, 1f)
+            Triple(textoBtnAbrirParentesis, azulClaro, 1f),
+            Triple(textoBtnCerrarParentesis, azulClaro, 1f),
+            Triple(textoBtnComa, azulClaro, 1f),
+            Triple(textoBtnDividir, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textBtn7, mediumBlue, 1f),
-            Triple(textBtn8, mediumBlue, 1f),
-            Triple(textBtn9, mediumBlue, 1f),
-            Triple(textBtnMultiply, darkOrange, 1f)
+            Triple(textoBtn7, azulMedio, 1f),
+            Triple(textoBtn8, azulMedio, 1f),
+            Triple(textoBtn9, azulMedio, 1f),
+            Triple(textoBtnMultiplicar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textBtn4, mediumBlue, 1f),
-            Triple(textBtn5, mediumBlue, 1f),
-            Triple(textBtn6, mediumBlue, 1f),
-            Triple(textBtnSubtract, darkOrange, 1f)
+            Triple(textoBtn4, azulMedio, 1f),
+            Triple(textoBtn5, azulMedio, 1f),
+            Triple(textoBtn6, azulMedio, 1f),
+            Triple(textoBtnRestar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textBtn1, mediumBlue, 1f),
-            Triple(textBtn2, mediumBlue, 1f),
-            Triple(textBtn3, mediumBlue, 1f),
-            Triple(textBtnAdd, darkOrange, 1f)
+            Triple(textoBtn1, azulMedio, 1f),
+            Triple(textoBtn2, azulMedio, 1f),
+            Triple(textoBtn3, azulMedio, 1f),
+            Triple(textoBtnSumar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textBtn0, mediumBlue, 1f),
-            Triple(textBtnEquals, lightOrange, 1f)
+            Triple(textoBtn0, azulMedio, 1f),
+            Triple(textoBtnIgualar, naranjaClaro, 1f)
         )
     );
 
     // Variable que contiene el listado de botones a generar, dependiendo del valor de isLandscape
-    val buttonRows = if (isLandscape) buttonRowsLandscape else buttonRowsPortrait
+    val filasBotonesActual = if (esApaisado) filasBotonesApaisado else filasBotonesVertical
 
     /**
      * Maneja el clic de los botones de la calculadora, teniendo en cuenta el texto que contienen.
      *
-     * @param text Texto del botón que ha sido presionado.
+     * @param texto Texto del botón que ha sido presionado.
      */
-    fun onBtnClick(text: String) {
-        when (text) {
+    fun funcionalidadBoton(texto: String) {
+        when (texto) {
             // Si se presiona el botón AC, se reinician los campos de operación y resultado
-            textBtnAc -> {
-                textOperation = ""
-                textResult = ""
+            textoBtnAc -> {
+                textOperacion = ""
+                textResultado = ""
             }
             // Si se presiona el botón de suprimir, se elimina el último caracter del campo de operación
-            textBtnDel -> if (textOperation.isNotEmpty()) textOperation = textOperation.dropLast(1)
+            textoBtnSuprimir -> if (textOperacion.isNotEmpty()) textOperacion = textOperacion.dropLast(1)
             // Si se presiona el botón de igualar, se evalua la expresión del campo de operación
-            textBtnEquals -> {
-                textResult =
-                    if (evaluateExpression(changeOperators(textOperation)).isNaN()) textError
-                    else evaluateExpression(changeOperators(textOperation)).toString()
+            textoBtnIgualar -> {
+                textResultado =
+                    if (evaluarOperacion(cambiarOperadores(textOperacion))
+                            .isNaN()) textoError
+                    else evaluarOperacion(cambiarOperadores(textOperacion))
+                        .toString()
             }
             // Si se presiona cualquier otro botón, se añade su texto al campo de operación
-            else -> textOperation += text
+            else -> textOperacion += texto
         }
     }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(darkBlue)
+            .background(azulOscuro)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(if (isLandscape) 60.dp else 20.dp, 10.dp),
+                .padding(if (esApaisado) 60.dp else 20.dp, 10.dp),
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 10.dp)
-                    .weight(if (isLandscape) 0.75f else 1f),
+                    .weight(if (esApaisado) 0.75f else 1f),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(text = textOperation, color = white, style = TextStyle(fontSize = 40.sp))
+                Text(text = textOperacion, color = blanco, style = TextStyle(fontSize = 40.sp))
             }
 
             HorizontalDivider(
@@ -227,19 +229,19 @@ fun CalculadoraLayout(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 5.dp)
-                    .weight(if (isLandscape) 0.5f else 0.75f),
+                    .weight(if (esApaisado) 0.5f else 0.75f),
                 contentAlignment = Alignment.CenterEnd
             ) {
-                Text(text = textResult, color = white, style = TextStyle(fontSize = 30.sp))
+                Text(text = textResultado, color = blanco, style = TextStyle(fontSize = 30.sp))
             }
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(5.dp),
                 modifier = Modifier
-                    .weight(if (isLandscape) 3f else 4f)
+                    .weight(if (esApaisado) 3f else 4f)
                     .padding(0.dp, 10.dp)
             ) {
-                ButtonGrid(buttonRows, ::onBtnClick, isLandscape)
+                FilasConBotones(filasBotonesActual, ::funcionalidadBoton, esApaisado)
             }
         }
     }
@@ -248,27 +250,27 @@ fun CalculadoraLayout(
 /**
  * Componente para generar filas con botones.
  *
- * @param buttonRows Listado de botones a añadir en cada fila.
- * @param onBtnClick Función para manejar el clic en los botones.
- * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
+ * @param filasBotones Listado de botones a añadir en cada fila.
+ * @param funcionalidadBoton Función para manejar el clic en los botones.
+ * @param esApaisado Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
-fun ButtonGrid(
-    buttonRows: List<List<Triple<String, Color, Float>>>,
-    onBtnClick: (String) -> Unit,
-    isLandscape: Boolean
+fun FilasConBotones(
+    filasBotones: List<List<Triple<String, Color, Float>>>,
+    funcionalidadBoton: (String) -> Unit,
+    esApaisado: Boolean
 ) {
-    for (row in buttonRows) {
+    for (row in filasBotones) {
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             for ((buttonText, buttonColor, buttonWeight) in row) {
-                ModifiedButton(
-                    text = buttonText,
+                BotonPersonalizado(
+                    texto = buttonText,
                     color = buttonColor,
                     modifier = Modifier.weight(buttonWeight),
-                    onButtonClick = onBtnClick,
-                    isLandscape = isLandscape
+                    funcionalidadBoton = funcionalidadBoton,
+                    esApaisado = esApaisado
                 )
             }
         }
@@ -278,33 +280,33 @@ fun ButtonGrid(
 /**
  * Componente para crear un botón con modificaciones de estilo.
  *
- * @param text Texto del botón.
+ * @param texto Texto del botón.
  * @param color Color de fondo del botón.
  * @param modifier Modifier del botón.
- * @param onButtonClick Función onClick del botón.
- * @param isLandscape Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
+ * @param funcionalidadBoton Función onClick del botón.
+ * @param esApaisado Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
-fun ModifiedButton(
-    text: String,
+fun BotonPersonalizado(
+    texto: String,
     color: Color,
     modifier: Modifier = Modifier,
-    onButtonClick: (String) -> Unit,
-    isLandscape: Boolean
+    funcionalidadBoton: (String) -> Unit,
+    esApaisado: Boolean
 ) {
-    val buttonPadding: Float = if (isLandscape) 2.5f else 15f
+    val paddingBoton: Float = if (esApaisado) 2.5f else 15f
 
     Button(
-        onClick = { onButtonClick(text) },
+        onClick = { funcionalidadBoton(texto) },
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(5.dp)
     ) {
         Text(
-            text,
-            style = TextStyle(fontSize = if (text == stringResource(R.string.btnDel)) 27.sp else 30.sp),
+            texto,
+            style = TextStyle(fontSize = if (texto == stringResource(R.string.btn_suprimir)) 27.sp else 30.sp),
             modifier = Modifier
-                .padding(0.dp, buttonPadding.dp)
+                .padding(0.dp, paddingBoton.dp)
                 .fillMaxWidth()
                 .align(Alignment.CenterVertically),
             textAlign = TextAlign.Center
@@ -316,12 +318,12 @@ fun ModifiedButton(
 /**
  * Evalúa la expresión mediante la librería exp4j.
  *
- * @param expression Expresión a evaluar.
+ * @param expresion Expresión a evaluar.
  * @return Resultado de la expresión en caso de que pueda llevarse a cabo y NaN en caso contrario.
  */
-fun evaluateExpression(expression: String): Double {
+fun evaluarOperacion(expresion: String): Double {
     return try {
-        val expr = ExpressionBuilder(expression).build()
+        val expr = ExpressionBuilder(expresion).build()
         expr.evaluate()
     } catch (e: Exception) {
         Double.NaN
@@ -331,13 +333,14 @@ fun evaluateExpression(expression: String): Double {
 /**
  * Cambia los operadores que se muestran en la calculadora, por operadores que puedan ser interpretados correctamente por exp4j.
  *
- * @param expression Texto que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
+ * @param expresion Texto que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
  * @return Expresión con los operadores cambiados.
  */
-fun changeOperators(expression: String): String {
-    var newExpression: String = ""
-    newExpression = expression.replace('×', '*').replace('÷', '/')
-    return newExpression
+fun cambiarOperadores(expresion: String): String {
+    val expresionValida = expresion.replace('×', '*')
+                                .replace('÷', '/')
+                                .replace(',', '.')
+    return expresionValida
 }
 
 /**
