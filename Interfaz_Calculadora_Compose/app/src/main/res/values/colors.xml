@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#CCFFFFFF</color>
-    <color name="dark_blue">#021E2C</color>
-    <color name="medium_blue">#80219EBC</color>
-    <color name="light_blue">#808ECAE6</color>
-    <color name="dark_orange">#80FB8500</color>
-    <color name="light_orange">#80FFB703</color>
+    <color name="negro">#FF000000</color>
+    <color name="blanco">#CCFFFFFF</color>
+    <color name="azul_oscuro">#021E2C</color>
+    <color name="azul_medio">#80219EBC</color>
+    <color name="azul_claro">#808ECAE6</color>
+    <color name="naranja_oscuro">#80FB8500</color>
+    <color name="naranja_claro">#80FFB703</color>
 </resources>

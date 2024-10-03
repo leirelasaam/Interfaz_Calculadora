@@ -58,8 +58,8 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun Calculadora() {
-    val configuration = LocalConfiguration.current
-    val esApaisado = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val configuracionActual = LocalConfiguration.current
+    val esApaisado = configuracionActual.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     CalculadoraLayout(esApaisado)
 }
@@ -74,98 +74,98 @@ fun CalculadoraLayout(
     esApaisado: Boolean
 ) {
     // Variable para controlar el texto de operación y guardar su estado
-    var textOperacion by rememberSaveable { mutableStateOf("") }
+    var operacion by rememberSaveable { mutableStateOf("") }
     // Variable para controlar el texto del resultado y guardar su estado
-    var textResultado by rememberSaveable { mutableStateOf("") }
+    var resultado by rememberSaveable { mutableStateOf("") }
 
     // Imortación de colores del archivo colors.xml
-    val azulOscuro = colorResource(R.color.dark_blue)
-    val azulClaro = colorResource(R.color.light_blue)
-    val azulMedio = colorResource(R.color.medium_blue)
-    val naranjaClaro = colorResource(R.color.light_orange)
-    val naranjaOscuro = colorResource(R.color.dark_orange)
-    val blanco = colorResource(R.color.white)
+    val azulOscuro = colorResource(R.color.azul_oscuro)
+    val azulClaro = colorResource(R.color.azul_claro)
+    val azulMedio = colorResource(R.color.azul_medio)
+    val naranjaClaro = colorResource(R.color.naranja_claro)
+    val naranjaOscuro = colorResource(R.color.naranja_oscuro)
+    val blanco = colorResource(R.color.blanco)
 
     // Importación de textos del archivo strings.xml
-    val textoBtn0 = stringResource(R.string.btn0)
-    val textoBtn1 = stringResource(R.string.btn1)
-    val textoBtn2 = stringResource(R.string.btn2)
-    val textoBtn3 = stringResource(R.string.btn3)
-    val textoBtn4 = stringResource(R.string.btn4)
-    val textoBtn5 = stringResource(R.string.btn5)
-    val textoBtn6 = stringResource(R.string.btn6)
-    val textoBtn7 = stringResource(R.string.btn7)
-    val textoBtn8 = stringResource(R.string.btn8)
-    val textoBtn9 = stringResource(R.string.btn9)
-    val textoBtnSumar = stringResource(R.string.btn_sumar)
-    val textoBtnRestar = stringResource(R.string.btn_restar)
-    val textoBtnMultiplicar = stringResource(R.string.btn_multiplicar)
-    val textoBtnDividir = stringResource(R.string.btn_dividir)
-    val textoBtnAbrirParentesis = stringResource(R.string.btn_abrir_parentesis)
-    val textoBtnCerrarParentesis = stringResource(R.string.btn_cerrar_parentesis)
-    val textoBtnAc = stringResource(R.string.btn_ac)
-    val textoBtnComa = stringResource(R.string.btn_coma)
-    val textoBtnIgualar = stringResource(R.string.btn_igualar)
-    val textoBtnSuprimir = stringResource(R.string.btn_suprimir)
+    val texto0 = stringResource(R.string.btn0)
+    val texto1 = stringResource(R.string.btn1)
+    val texto2 = stringResource(R.string.btn2)
+    val texto3 = stringResource(R.string.btn3)
+    val texto4 = stringResource(R.string.btn4)
+    val texto5 = stringResource(R.string.btn5)
+    val texto6 = stringResource(R.string.btn6)
+    val texto7 = stringResource(R.string.btn7)
+    val texto8 = stringResource(R.string.btn8)
+    val texto9 = stringResource(R.string.btn9)
+    val textoSumar = stringResource(R.string.btn_sumar)
+    val textoRestar = stringResource(R.string.btn_restar)
+    val textoMultiplicar = stringResource(R.string.btn_multiplicar)
+    val textoDividir = stringResource(R.string.btn_dividir)
+    val textoAbrirParentesis = stringResource(R.string.btn_abrir_parentesis)
+    val textoCerrarParentesis = stringResource(R.string.btn_cerrar_parentesis)
+    val textoAc = stringResource(R.string.btn_ac)
+    val textoComa = stringResource(R.string.btn_coma)
+    val textoIgualar = stringResource(R.string.btn_igualar)
+    val textoSuprimir = stringResource(R.string.btn_suprimir)
     val textoError = stringResource(R.string.texto_error)
 
     // Listado de botones para la orientación apaisada
     val filasBotonesApaisado = listOf(
         listOf(
-            Triple(textoBtn7, azulMedio, 1f),
-            Triple(textoBtn8, azulMedio, 1f),
-            Triple(textoBtn9, azulMedio, 1f),
-            Triple(textoBtnSuprimir, naranjaClaro, 1f),
-            Triple(textoBtnAc, naranjaClaro, 2.05f)
+            Triple(texto7, azulMedio, 1f),
+            Triple(texto8, azulMedio, 1f),
+            Triple(texto9, azulMedio, 1f),
+            Triple(textoSuprimir, naranjaClaro, 1f),
+            Triple(textoAc, naranjaClaro, 2.05f)
         ), listOf(
-            Triple(textoBtn4, azulMedio, 1f),
-            Triple(textoBtn5, azulMedio, 1f),
-            Triple(textoBtn6, azulMedio, 1f),
-            Triple(textoBtnDividir, naranjaOscuro, 1f),
-            Triple(textoBtnMultiplicar, naranjaOscuro, 1f),
-            Triple(textoBtnAbrirParentesis, azulClaro, 1f)
+            Triple(texto4, azulMedio, 1f),
+            Triple(texto5, azulMedio, 1f),
+            Triple(texto6, azulMedio, 1f),
+            Triple(textoDividir, naranjaOscuro, 1f),
+            Triple(textoMultiplicar, naranjaOscuro, 1f),
+            Triple(textoAbrirParentesis, azulClaro, 1f)
         ), listOf(
-            Triple(textoBtn1, azulMedio, 1f),
-            Triple(textoBtn2, azulMedio, 1f),
-            Triple(textoBtn3, azulMedio, 1f),
-            Triple(textoBtnRestar, naranjaOscuro, 1f),
-            Triple(textoBtnSumar, naranjaOscuro, 1f),
-            Triple(textoBtnCerrarParentesis, azulClaro, 1f)
+            Triple(texto1, azulMedio, 1f),
+            Triple(texto2, azulMedio, 1f),
+            Triple(texto3, azulMedio, 1f),
+            Triple(textoRestar, naranjaOscuro, 1f),
+            Triple(textoSumar, naranjaOscuro, 1f),
+            Triple(textoCerrarParentesis, azulClaro, 1f)
         ), listOf(
-            Triple(textoBtn0, azulMedio, 1f),
-            Triple(textoBtnComa, azulClaro, 1f),
-            Triple(textoBtnIgualar, naranjaClaro, 1f)
+            Triple(texto0, azulMedio, 1f),
+            Triple(textoComa, azulClaro, 1f),
+            Triple(textoIgualar, naranjaClaro, 1f)
         )
     );
 
     // Listado de botones para la orientación vertical
     val filasBotonesVertical = listOf(
         listOf(
-            Triple(textoBtnAc, naranjaClaro, 3.05f),
-            Triple(textoBtnSuprimir, naranjaClaro, 1f)
+            Triple(textoAc, naranjaClaro, 3.05f),
+            Triple(textoSuprimir, naranjaClaro, 1f)
         ), listOf(
-            Triple(textoBtnAbrirParentesis, azulClaro, 1f),
-            Triple(textoBtnCerrarParentesis, azulClaro, 1f),
-            Triple(textoBtnComa, azulClaro, 1f),
-            Triple(textoBtnDividir, naranjaOscuro, 1f)
+            Triple(textoAbrirParentesis, azulClaro, 1f),
+            Triple(textoCerrarParentesis, azulClaro, 1f),
+            Triple(textoComa, azulClaro, 1f),
+            Triple(textoDividir, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textoBtn7, azulMedio, 1f),
-            Triple(textoBtn8, azulMedio, 1f),
-            Triple(textoBtn9, azulMedio, 1f),
-            Triple(textoBtnMultiplicar, naranjaOscuro, 1f)
+            Triple(texto7, azulMedio, 1f),
+            Triple(texto8, azulMedio, 1f),
+            Triple(texto9, azulMedio, 1f),
+            Triple(textoMultiplicar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textoBtn4, azulMedio, 1f),
-            Triple(textoBtn5, azulMedio, 1f),
-            Triple(textoBtn6, azulMedio, 1f),
-            Triple(textoBtnRestar, naranjaOscuro, 1f)
+            Triple(texto4, azulMedio, 1f),
+            Triple(texto5, azulMedio, 1f),
+            Triple(texto6, azulMedio, 1f),
+            Triple(textoRestar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textoBtn1, azulMedio, 1f),
-            Triple(textoBtn2, azulMedio, 1f),
-            Triple(textoBtn3, azulMedio, 1f),
-            Triple(textoBtnSumar, naranjaOscuro, 1f)
+            Triple(texto1, azulMedio, 1f),
+            Triple(texto2, azulMedio, 1f),
+            Triple(texto3, azulMedio, 1f),
+            Triple(textoSumar, naranjaOscuro, 1f)
         ), listOf(
-            Triple(textoBtn0, azulMedio, 1f),
-            Triple(textoBtnIgualar, naranjaClaro, 1f)
+            Triple(texto0, azulMedio, 1f),
+            Triple(textoIgualar, naranjaClaro, 1f)
         )
     );
 
@@ -177,25 +177,29 @@ fun CalculadoraLayout(
      *
      * @param texto Texto del botón que ha sido presionado.
      */
-    fun funcionalidadBoton(texto: String) {
+    fun clicBoton(texto: String) {
         when (texto) {
             // Si se presiona el botón AC, se reinician los campos de operación y resultado
-            textoBtnAc -> {
-                textOperacion = ""
-                textResultado = ""
+            textoAc -> {
+                operacion = ""
+                resultado = ""
             }
+
             // Si se presiona el botón de suprimir, se elimina el último caracter del campo de operación
-            textoBtnSuprimir -> if (textOperacion.isNotEmpty()) textOperacion = textOperacion.dropLast(1)
+            textoSuprimir -> if (operacion.isNotEmpty()) operacion = operacion.dropLast(1)
+
             // Si se presiona el botón de igualar, se evalua la expresión del campo de operación
-            textoBtnIgualar -> {
-                textResultado =
-                    if (evaluarOperacion(cambiarOperadores(textOperacion))
-                            .isNaN()) textoError
-                    else evaluarOperacion(cambiarOperadores(textOperacion))
-                        .toString()
+            textoIgualar -> {
+                resultado =
+                    if (evaluarOperacion(cambiarOperadores(operacion))
+                            .isNaN()
+                    ) textoError
+                    else evaluarOperacion(cambiarOperadores(operacion))
+                        .toString().replace('.', ',')
             }
+
             // Si se presiona cualquier otro botón, se añade su texto al campo de operación
-            else -> textOperacion += texto
+            else -> operacion += texto
         }
     }
 
@@ -203,46 +207,43 @@ fun CalculadoraLayout(
         modifier = Modifier
             .fillMaxSize()
             .background(azulOscuro)
+            .padding(if (esApaisado) 60.dp else 20.dp, 10.dp),
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
-        Column(
+        // Contiene el texto de la operación, del cual se guarda el estado
+        Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(if (esApaisado) 60.dp else 20.dp, 10.dp),
-            verticalArrangement = Arrangement.SpaceEvenly
+                .fillMaxWidth()
+                .padding(0.dp, 10.dp)
+                .weight(if (esApaisado) 0.75f else 1f),
+            contentAlignment = Alignment.CenterEnd
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(0.dp, 10.dp)
-                    .weight(if (esApaisado) 0.75f else 1f),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = textOperacion, color = blanco, style = TextStyle(fontSize = 40.sp))
-            }
+            Text(text = operacion, color = blanco, style = TextStyle(fontSize = 40.sp))
+        }
 
-            HorizontalDivider(
-                color = Color.White,
-                thickness = 2.dp
-            )
+        HorizontalDivider(
+            color = Color.White,
+            thickness = 2.dp
+        )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(0.dp, 5.dp)
-                    .weight(if (esApaisado) 0.5f else 0.75f),
-                contentAlignment = Alignment.CenterEnd
-            ) {
-                Text(text = textResultado, color = blanco, style = TextStyle(fontSize = 30.sp))
-            }
+        // Contiene el texto de la resultado, del cual se guarda el estado
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 5.dp)
+                .weight(if (esApaisado) 0.5f else 0.75f),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Text(text = resultado, color = blanco, style = TextStyle(fontSize = 30.sp))
+        }
 
-            Column(
-                verticalArrangement = Arrangement.spacedBy(5.dp),
-                modifier = Modifier
-                    .weight(if (esApaisado) 3f else 4f)
-                    .padding(0.dp, 10.dp)
-            ) {
-                FilasConBotones(filasBotonesActual, ::funcionalidadBoton, esApaisado)
-            }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(5.dp),
+            modifier = Modifier
+                .weight(if (esApaisado) 3f else 4f)
+                .padding(0.dp, 10.dp)
+        ) {
+            FilasConBotones(filasBotonesActual, ::clicBoton, esApaisado)
         }
     }
 }
@@ -251,13 +252,13 @@ fun CalculadoraLayout(
  * Componente para generar filas con botones.
  *
  * @param filasBotones Listado de botones a añadir en cada fila.
- * @param funcionalidadBoton Función para manejar el clic en los botones.
+ * @param clicBoton Función para manejar el clic en los botones.
  * @param esApaisado Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
 fun FilasConBotones(
     filasBotones: List<List<Triple<String, Color, Float>>>,
-    funcionalidadBoton: (String) -> Unit,
+    clicBoton: (String) -> Unit,
     esApaisado: Boolean
 ) {
     for (row in filasBotones) {
@@ -269,7 +270,7 @@ fun FilasConBotones(
                     texto = buttonText,
                     color = buttonColor,
                     modifier = Modifier.weight(buttonWeight),
-                    funcionalidadBoton = funcionalidadBoton,
+                    clicBoton = clicBoton,
                     esApaisado = esApaisado
                 )
             }
@@ -283,7 +284,7 @@ fun FilasConBotones(
  * @param texto Texto del botón.
  * @param color Color de fondo del botón.
  * @param modifier Modifier del botón.
- * @param funcionalidadBoton Función onClick del botón.
+ * @param clicBoton Función onClick del botón.
  * @param esApaisado Un booleano que indica si la orientación de la pantalla es horizontal (true) o vertical (false).
  */
 @Composable
@@ -291,20 +292,20 @@ fun BotonPersonalizado(
     texto: String,
     color: Color,
     modifier: Modifier = Modifier,
-    funcionalidadBoton: (String) -> Unit,
+    clicBoton: (String) -> Unit,
     esApaisado: Boolean
 ) {
     val paddingBoton: Float = if (esApaisado) 2.5f else 15f
 
     Button(
-        onClick = { funcionalidadBoton(texto) },
+        onClick = { clicBoton(texto) },
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(containerColor = color),
         shape = RoundedCornerShape(5.dp)
     ) {
         Text(
             texto,
-            style = TextStyle(fontSize = if (texto == stringResource(R.string.btn_suprimir)) 27.sp else 30.sp),
+            style = TextStyle(fontSize = if (texto == stringResource(R.string.btn_suprimir)) 29.sp else 30.sp),
             modifier = Modifier
                 .padding(0.dp, paddingBoton.dp)
                 .fillMaxWidth()
@@ -337,9 +338,7 @@ fun evaluarOperacion(expresion: String): Double {
  * @return Expresión con los operadores cambiados.
  */
 fun cambiarOperadores(expresion: String): String {
-    val expresionValida = expresion.replace('×', '*')
-                                .replace('÷', '/')
-                                .replace(',', '.')
+    val expresionValida = expresion.replace('×', '*').replace('÷', '/').replace(',', '.')
     return expresionValida
 }
 
