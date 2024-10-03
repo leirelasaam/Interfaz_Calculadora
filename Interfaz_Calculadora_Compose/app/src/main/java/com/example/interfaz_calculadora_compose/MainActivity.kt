@@ -211,15 +211,7 @@ fun CalculadoraLayout(
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         // Contiene el texto de la operación, del cual se guarda el estado
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 10.dp)
-                .weight(if (esApaisado) 0.75f else 1f),
-            contentAlignment = Alignment.CenterEnd
-        ) {
-            Text(text = operacion, color = blanco, style = TextStyle(fontSize = 40.sp))
-        }
+        TextoPersonalizado( Modifier.weight(if (esApaisado) 0.75f else 1f), operacion, 40, 10)
 
         HorizontalDivider(
             color = Color.White,
@@ -227,15 +219,7 @@ fun CalculadoraLayout(
         )
 
         // Contiene el texto de la resultado, del cual se guarda el estado
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 5.dp)
-                .weight(if (esApaisado) 0.5f else 0.75f),
-            contentAlignment = Alignment.CenterEnd
-        ) {
-            Text(text = resultado, color = blanco, style = TextStyle(fontSize = 30.sp))
-        }
+        TextoPersonalizado( Modifier.weight(if (esApaisado) 0.5f else 0.75f), resultado, 30, 5)
 
         Column(
             verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -247,6 +231,32 @@ fun CalculadoraLayout(
         }
     }
 }
+
+/**
+ * Componente para generar un texto con modificaciones de estilo.
+ *
+ * @param modifier Modifier del Box que contiene el texto.
+ * @param texto Texto a mostrar.
+ * @param tamanoFuente Tamaño de la fuente.
+ * @param paddingVertical Padding vertical que se aplica en el Box.
+ */
+@Composable
+fun TextoPersonalizado(
+    modifier: Modifier = Modifier,
+    texto: String,
+    tamanoFuente: Int,
+    paddingVertical: Int
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(0.dp, paddingVertical.dp),
+        contentAlignment = Alignment.CenterEnd
+    ) {
+        Text(text = texto, color = Color.White, style = TextStyle(fontSize = tamanoFuente.sp))
+    }
+}
+
 
 /**
  * Componente para generar filas con botones.
