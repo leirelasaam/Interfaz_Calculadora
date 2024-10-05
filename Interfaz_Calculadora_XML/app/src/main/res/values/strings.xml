@@ -17,7 +17,7 @@
     <string name="btnOpen">(</string>
     <string name="btnClose">)</string>
     <string name="btnAc">AC</string>
-    <string name="btnDot">.</string>
+    <string name="btnDot">,</string>
     <string name="btnEquals">=</string>
     <string name="btnDel">⌫</string>
     <string name="textError">Expresión inválida</string>

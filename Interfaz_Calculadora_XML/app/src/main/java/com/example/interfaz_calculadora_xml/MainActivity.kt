@@ -14,8 +14,9 @@ import net.objecthunter.exp4j.ExpressionBuilder
  *
  */
 class MainActivity : AppCompatActivity() {
-    private lateinit var textOperation: TextView
-    private lateinit var textResult: TextView
+    // Se aplican a sus respectivos campos y se guarda su valor
+    private var operation: String = ""
+    private var result: String = ""
 
     /**
      * Método llamado cuando la actividad se crea por primera vez.
@@ -32,16 +33,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        textOperation = (findViewById<TextView>(R.id.textOperation))
-        textResult = (findViewById<TextView>(R.id.textResult))
+        val textOperation = (findViewById<TextView>(R.id.textOperation))
+        val textResult = (findViewById<TextView>(R.id.textResult))
 
         // Restaurar el estado si existe
         if (savedInstanceState != null) {
-            textOperation.text = savedInstanceState.getString("operationText", "")
-            textResult.text = savedInstanceState.getString("resultText", "")
+            operation = savedInstanceState.getString("operation", "")
+            result = savedInstanceState.getString("result", "")
+            textOperation.text = operation
+            textResult.text = result
         }
 
-        // IDs de los botones numéricos y de operación
+        // IDs de los botones numéricos, paréntesis, coma y de operadores
         val buttons = listOf(
             R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
             R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9,
@@ -53,29 +56,35 @@ class MainActivity : AppCompatActivity() {
         buttons.forEach { buttonId ->
             val btn: Button = findViewById<Button>(buttonId)
             btn.setOnClickListener(){
-                textOperation.text = textOperation.text.toString() + btn.text.toString()
+                operation += btn.text.toString()
+                textOperation.text = operation
             }
         }
 
         // Botón que resetea el campo de operación
         (findViewById<Button>(R.id.btnAc)).setOnClickListener(){
-            textOperation.text = ""
+            operation = ""
+            result = ""
+            textOperation.text = operation
+            textResult.text = result
         }
 
         // Botón que borra el último caracter introducido en el campo de operación
         (findViewById<Button>(R.id.btnDel)).setOnClickListener {
-            val currentText = textOperation.text.toString()
-            if (currentText.isNotEmpty()) {
-                textOperation.text = currentText.dropLast(1)
+            if (operation.isNotEmpty()) {
+                operation = operation.dropLast(1)
+                textOperation.text = operation
             }
         }
 
         // Botón que envía la expresión a ser evaluada
         (findViewById<Button>(R.id.btnEquals)).setOnClickListener(){
-            val expression = textOperation.text.toString()
-            val result: Double = evaluateExpression(changeOperators(expression))
-            // Comprobar si el resultado es válido o es NaN
-            textResult.text = if (result.isNaN()) getString(R.string.textError) else result.toString()
+            if (operation.isNotEmpty()){
+                val resultado: Double = evaluarOperacion(cambiarCaracteres(operation))
+                // Comprobar si el resultado es válido o es NaN
+                result = if (resultado.isNaN()) getString(R.string.textError) else cambiarCaracteresResultado(resultado.toString())
+                textResult.text = result
+            }
         }
 
     }
@@ -88,19 +97,19 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("operationText", textOperation.text.toString())
-        outState.putString("resultText", textResult.text.toString())
+        outState.putString("operation", operation)
+        outState.putString("result", result)
     }
 
     /**
      * Evalúa la expresión mediante la librería exp4j.
      *
-     * @param expression Expresión a evaluar.
-     * @return Resultado de la expresión en caso de que pueda llevarse a cabo y NaN en caso contrario.
+     * @param expresion String con la expresión a evaluar.
+     * @return Resultado de la expresión como Double en caso de que pueda llevarse a cabo y Double.NaN en caso contrario.
      */
-    fun evaluateExpression(expression: String): Double {
+    private fun evaluarOperacion(expresion: String): Double {
         return try {
-            val expr = ExpressionBuilder(expression).build()
+            val expr = ExpressionBuilder(expresion).build()
             expr.evaluate()
         } catch (e: Exception) {
             Double.NaN
@@ -110,12 +119,22 @@ class MainActivity : AppCompatActivity() {
     /**
      * Cambia los operadores que se muestran en la calculadora, por operadores que puedan ser interpretados correctamente por exp4j.
      *
-     * @param expression Texto que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
-     * @return Expresión con los operadores cambiados.
+     * @param expresion String que contiene la expresión a ser evaluada y en la cual se realizará el reemplazo de operadores.
+     * @return String de la expresión con los operadores cambiados.
      */
-    fun changeOperators(expression: String) : String {
-        var newExpression: String = ""
-        newExpression = expression.replace('×', '*').replace('÷', '/')
-        return newExpression
+    private fun cambiarCaracteres(expresion: String): String {
+        val expresionValida = expresion.replace('×', '*').replace('÷', '/').replace(',', '.')
+        return expresionValida
+    }
+
+    /**
+     * Cambia los puntos por las comas en una cadena.
+     *
+     * @param expresion String en el que se realiza el reemplazo de caracteres.
+     * @return String con comas.
+     */
+    private fun cambiarCaracteresResultado(resultado: String): String {
+        val resultadoConComa = resultado.replace('.', ',')
+        return resultadoConComa
     }
 }
